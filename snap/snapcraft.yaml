@@ -1,0 +1,38 @@
+name: ircservices
+base: core22
+version: '5.1.23'
+summary: Services for IRC Networks
+description: |
+  IRC Services (also called just "Services" for short) is a system of services
+  to be used with Internet Relay Chat networks. Services provides for definitive
+  nickname and channel ownership, as well as the ability to send
+  messages ("memos") to offline users, and gives IRC operators considerably more
+  control over the network. 
+
+grade: stable
+confinement: strict
+
+apps:
+  ircservices:
+    command: usr/sbin/ircservices -nofork
+    daemon: simple
+    plugs:
+      - network
+      - network-bind
+
+layout:
+  /usr/lib/ircservices:
+    bind: $SNAP_DATA/ircservices
+
+parts:
+  ircservices:
+    source: http://achurch.org/services/tarballs/ircservices-5.1.23.tar.gz
+    plugin: autotools
+    build-environment:
+      - CFLAGS: "-Wno-error=format-security"
+      - INSTALL_PREFIX: "$SNAPCRAFT_PART_INSTALL"
+    autotools-configure-parameters:
+      - --prefix=/usr
+    override-build: |
+      patch -p1 < $CRAFT_PROJECT_DIR/patch.txt
+      craftctl default

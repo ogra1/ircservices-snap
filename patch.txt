@@ -1,0 +1,38 @@
+--- src/modules/httpd/redirect.c	2010-06-07 19:39:18.000000000 +0000
++++ build/modules/httpd/redirect.c	2023-06-12 13:42:50.936882982 +0000
+@@ -26,18 +26,18 @@
+ 
+ 
+ /* Imported from NickServ: */
+-typeof(get_nickinfo) *p_get_nickinfo;
+-typeof(put_nickinfo) *p_put_nickinfo;
+-typeof(_get_ngi) *p__get_ngi;
+-typeof(put_nickgroupinfo) *p_put_nickgroupinfo;
++static typeof(get_nickinfo) *p_get_nickinfo;
++static typeof(put_nickinfo) *p_put_nickinfo;
++static typeof(_get_ngi) *p__get_ngi;
++static typeof(put_nickgroupinfo) *p_put_nickgroupinfo;
+ #define get_nickinfo (*p_get_nickinfo)
+ #define put_nickinfo (*p_put_nickinfo)
+ #define _get_ngi (*p__get_ngi)
+ #define put_nickgroupinfo (*p_put_nickgroupinfo)
+ 
+ /* Imported from ChanServ: */
+-typeof(get_channelinfo) *p_get_channelinfo;
+-typeof(put_channelinfo) *p_put_channelinfo;
++static typeof(get_channelinfo) *p_get_channelinfo;
++static typeof(put_channelinfo) *p_put_channelinfo;
+ #define get_channelinfo (*p_get_channelinfo)
+ #define put_channelinfo (*p_put_channelinfo)
+ 
+--- src/modules/protocol/sjoin.c	2010-06-07 19:39:18.000000000 +0000
++++ build/modules/protocol/sjoin.c	2023-06-12 13:45:14.219074693 +0000
+@@ -23,7 +23,7 @@
+ 
+ static Module *sjoin_module_chanserv;
+ 
+-int CSSetChannelTime;
++static int CSSetChannelTime;
+ 
+ /*************************************************************************/
+

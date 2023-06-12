@@ -1,0 +1,6 @@
+#! /bin/sh
+
+mkdir -p $SNAP_DATA/ircservices
+cp -a $SNAP/usr/lib/ircservices/* $SNAP_DATA/ircservices/
+mv $SNAP_DATA/ircservices/example-ircservices.conf $SNAP_DATA/ircservices/ircservices.conf
+mv $SNAP_DATA/ircservices/example-modules.conf $SNAP_DATA/ircservices/modules.conf
